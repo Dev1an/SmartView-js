@@ -7,15 +7,26 @@ const discoverer = require('./lib/discovery');
 const remotePort = 9992;
 
 var SmartView = module.exports = function(address) {
+
+	var self = this;
+
 	events.EventEmitter.call(this);
 
 	const connection = new net.Socket();
 
-	Object.defineProperties(this, 'address', {
+	connection.on('message', function(data) {
+		console.log(data);
+	});
+
+
+
+
+
+	Object.defineProperty(this, 'address', {
 		set: function(newAddress) {
 			if (net.isIPv4(newAddress)) {
 				address = newAddress;
-				if (socket.writable){
+				if (connection.writable){
 					connection.destroy();
 					connection.connect(remotePort, address);
 				}
@@ -23,6 +34,7 @@ var SmartView = module.exports = function(address) {
 				console.log('invalid IPv4 address');
 				// todo
 				// emit error
+				if (!net.isIPv4(address)) address = undefined;
 			}
 		},
 		get: function() {
@@ -30,7 +42,15 @@ var SmartView = module.exports = function(address) {
 		}
 	});
 
+	this.connect = function() {
+		if (typeof this.address !== undefined) {
+			connection.destroy();
+			connection.connect(remotePort, self.address);
+		}
+	};
+
 	this.address = address;
+	this.connect();
 };
 
 util.inherits(SmartView, events.EventEmitter);
