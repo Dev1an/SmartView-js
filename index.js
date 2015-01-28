@@ -9,6 +9,8 @@ const SmartViewConnection = require('./lib/connection');
 
 const SmartView = module.exports = new events.EventEmitter();
 
+SmartView.Connection = SmartViewConnection;
+
 makeDiscoverer(SmartView);
 
 SmartView.setBorder = function(address, monitor, color) {
