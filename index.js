@@ -22,6 +22,12 @@ SmartView.setBorder = function(address, monitor, color) {
 	});
 }
 
+
+
+// Because SmartViews can only have one TCP socket open at the same time
+// we create a new connection for every request and close it when the
+// SmartView sends a response
+
 SmartView.getInfo = function(address, callback) {
 	var deviceInfo = new Future();
 	var monitorInfo = new Future();
