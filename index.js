@@ -1,13 +1,13 @@
 const net = require('net');
 const util = require('util');
 const events = require('events');
-const Future = require('fibers/future');
+var Future;
 
 const makeDiscoverer = require('./lib/discovery');
 const SmartViewConnection = require('./lib/connection');
 
-
 const SmartView = module.exports = new events.EventEmitter();
+module.exports.setFuture = function(f) {Future = f};
 
 SmartView.Connection = SmartViewConnection;
 
