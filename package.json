@@ -1,5 +1,5 @@
 {
-  "name": "SmartView",
+  "name": "smartview",
   "version": "0.0.1",
   "description": "BlackMagic SmartView Ethernet Protocol implementation",
   "main": "index.js",
@@ -15,7 +15,9 @@
     "nodejs",
     "SmartView"
   ],
-  "author": "Devian",
+  "author": {
+    "name": "Devian"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Dev1an/SmartView-js/issues"
