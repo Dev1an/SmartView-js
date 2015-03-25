@@ -15,7 +15,9 @@
     "nodejs",
     "SmartView"
   ],
-  "author": "Devian",
+  "author": {
+    "name": "Devian"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Dev1an/SmartView-js/issues"
