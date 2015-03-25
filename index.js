@@ -1,7 +1,7 @@
 const net = require('net');
 const util = require('util');
 const events = require('events');
-var Future;
+var Future = require('fibers/future');
 
 const makeDiscoverer = require('./lib/discovery');
 const SmartViewConnection = require('./lib/connection');
