@@ -7,17 +7,22 @@ const makeDiscoverer = require('./lib/discovery');
 const SmartViewConnection = require('./lib/connection');
 
 const SmartView = module.exports = new events.EventEmitter();
-module.exports.setFuture = function(f) {Future = f};
 
 SmartView.Connection = SmartViewConnection;
 
 makeDiscoverer(SmartView);
 
-SmartView.setBorder = function(address, monitor, color) {
+module.exports.setBorder = function(address, monitor, color, callback) {
 	new SmartViewConnection(address, {
 		connected: function() {
-			this.on('acknowledgement', function() {this.close()});
+			this.on('acknowledgement', function() {
+				this.close();
+				callback();
+			});
 			this.setBorder(monitor, color);
+		},
+		error: function(error) {
+			callback(err);
 		}
 	});
 }
@@ -28,7 +33,7 @@ SmartView.setBorder = function(address, monitor, color) {
 // we create a new connection for every request and close it when the
 // SmartView sends a response
 
-SmartView.getInfo = function(address, callback) {
+module.exports.getInfo = function(address, callback) {
 	var deviceInfo = new Future();
 	var monitorInfo = new Future();
 	var monitors = [];
@@ -49,15 +54,23 @@ SmartView.getInfo = function(address, callback) {
 			},
 			networkSettings: function(settings) {
 				networkSettings.return(settings);
+			},
+			error: function(error) {
+				deviceInfo.throw(error);
 			}
 		});
 
-		var info = deviceInfo.wait();
-		info.monitors = monitorInfo.wait();
-		for (var key in networkSettings.wait()) {
-			info[key] = networkSettings.wait()[key];
+		var error, info;
+		try{
+			var info = deviceInfo.wait();
+			info.monitors = monitorInfo.wait();
+			for (var key in networkSettings.wait()) {
+				info[key] = networkSettings.wait()[key];
+			}
+			connection.close();
+		} catch (e) {
+			error = e;
 		}
-		connection.close();
-		callback(info);
+		callback(error, info);
 	}).detach();
 }
