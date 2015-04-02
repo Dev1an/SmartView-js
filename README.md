@@ -23,32 +23,32 @@ SmartView.getInfo(address, function(error, information) {
 - `callback` 
 
  A callback funciton that will be called with to arguments: `error` and `information`. The `information` argument will be an object like this:
-```js
-{
-    model : "SmartView HD",
-    hostname : "SmartViewHD-7c2e0d02ae3e",
-    name : "dPro SmartView HD",
-    monitors : [ 
-        {
-            brightness : 255,
-            contrast : 127,
-            saturation : 127,
-            identify : false,
-            border : "Green",
-            widescreenSD : "auto",
-            id : "MONITOR A"
-        }
-    ],
-    inverted : false,
-    dynamicIP : false,
-    staticAddress : "10.1.0.41",
-    staticNetmask : "255.255.255.0",
-    staticGateway : "192.168.0.1",
-    currentAddress : "10.1.0.41",
-    currentNetmask : "255.255.255.0",
-    currentGateway : "192.168.0.1"
-}
-```
+	```js
+	{
+	    model : "SmartView HD",
+	    hostname : "SmartViewHD-7c2e0d02ae3e",
+	    name : "dPro SmartView HD",
+	    monitors : [ 
+	        {
+	            brightness : 255,
+	            contrast : 127,
+	            saturation : 127,
+	            identify : false,
+	            border : "Green",
+	            widescreenSD : "auto",
+	            id : "MONITOR A"
+	        }
+	    ],
+	    inverted : false,
+	    dynamicIP : false,
+	    staticAddress : "10.1.0.41",
+	    staticNetmask : "255.255.255.0",
+	    staticGateway : "192.168.0.1",
+	    currentAddress : "10.1.0.41",
+	    currentNetmask : "255.255.255.0",
+	    currentGateway : "192.168.0.1"
+	}
+	```
 
 ## Change tally border
 ```js
