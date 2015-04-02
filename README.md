@@ -4,9 +4,7 @@ Non blocking Blackmagic SmartView Ethernet Protocol implementation in Javascript
 ## Installation
 	npm install smartview
 
-## Features
-
-### Get information
+## Get information
 
 To get information about a smartview
 ```js
@@ -18,10 +16,10 @@ SmartView.getInfo(address, function(error, information) {
 ```
 The method `getInfo(address, callback)` receives two arguments.
 
-#### `address`
+### `address`
 The address of your smartview
 
-#### `callback`
+### `callback`
 
 A callback funciton that will be called with to arguments: `error` and `information`. Information will be an object like this:
 ```js
@@ -51,7 +49,7 @@ A callback funciton that will be called with to arguments: `error` and `informat
 }
 ```
 
-### Change tally border
+## Change tally border
 ```js
 var address = "10.1.0.12"
 SmartView.setBorder(address, 'MONITOR A', 'Green', function(error){
@@ -60,13 +58,13 @@ SmartView.setBorder(address, 'MONITOR A', 'Green', function(error){
 ```
 The method `setBorder(address, monitor, color, callback)` receives four arguments.
 
-#### `address`
+### `address`
 The address of your smartview
 
-#### `monitor`
+### `monitor`
 The id of the monitor you want to control.
 
-#### `color`
+### `color`
 The color of the tally border. You can choose between:
 - `"None"`
 - `"Red"`
@@ -74,11 +72,11 @@ The color of the tally border. You can choose between:
 - `"Blue"`
 
 
-#### `callback`
+### `callback`
 
 A callback funciton that will be called when the tally border is set. When an error occures, for example when the SmartView is not reachable, an error will be provided as the first argument of the callback function.
 
-### Auto discovery
+## Auto discovery
 
 To discover SmartViews in your network, add an event listener for the `detected` event:
 
