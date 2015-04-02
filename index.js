@@ -17,12 +17,12 @@ module.exports.setBorder = function(address, monitor, color, callback) {
 		connected: function() {
 			this.on('acknowledgement', function() {
 				this.close();
-				callback();
+				if (callback instanceof Function) callback();
 			});
 			this.setBorder(monitor, color);
 		},
 		error: function(error) {
-			callback(err);
+			if (callback instanceof Function) callback(err);
 		}
 	});
 }
