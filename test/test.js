@@ -15,9 +15,9 @@ describe('Smartview', function() {
 		it('should receive all simulated information', function (done) {
 			smartViewSimulator.once('connection', function(socket) {
 				socket.write(new Buffer(SVProtocol.protocolPreamble));
-				socket.write(new Buffer(SVProtocol.deviceInformation));
-				socket.write(new Buffer(SVProtocol.networkConfiguration));
-				socket.write(new Buffer(SVProtocol.monitorInformation));
+				setTimeout(function() {socket.write(new Buffer(SVProtocol.deviceInformation))}, 50);
+				setTimeout(function() {socket.write(new Buffer(SVProtocol.networkConfiguration))}, 100);
+				setTimeout(function() {socket.write(new Buffer(SVProtocol.monitorInformation))}, 150);
 			});
 
 			SmartView.getInfo('0.0.0.0', function(error, information) {
