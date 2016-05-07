@@ -1,6 +1,6 @@
 {
   "name": "smartview",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "BlackMagic SmartView Ethernet Protocol implementation",
   "main": "index.js",
   "scripts": {
