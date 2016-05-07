@@ -39,8 +39,17 @@ module.exports.getInfo = function(address, callback) {
 	var monitors = [];
 	var networkSettings = new Future();
 
-	Future.task(function() {
-		const connection = new SmartViewConnection(address, {
+	var task, connection;
+
+	const timeout = setTimeout(function() {
+		connection.close();
+		const error = new Error('Timeout: the SmartView did not respond within 6 seconds');
+		error.number = 1;
+		setTimeout(callback, 50, error);
+	}, 6000);
+
+	task = Future.task(function() {
+		connection = new SmartViewConnection(address, {
 			deviceInfo: function(info) {
 				deviceInfo.return(info);
 			},
@@ -71,6 +80,8 @@ module.exports.getInfo = function(address, callback) {
 		} catch (e) {
 			error = e;
 		}
+		clearTimeout(timeout);
 		callback(error, info);
-	}).detach();
+	});
+	task.detach()
 }
