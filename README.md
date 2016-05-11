@@ -1,5 +1,7 @@
 # SmartView
-Non blocking Blackmagic SmartView Ethernet Protocol implementation in Javascript (written for use with Node.js)
+Non blocking Blackmagic SmartView Ethernet Protocol implementation in Javascript (written for use with Node.js).
+
+Because SmartView devices only allow one active connection at a time, we open a new connection for each action and close it again when the action is done. This way, when your application is idle (not sending messages to smartview devices), the SmartView will not be blocked and you able to connect to it from another application when you use this library.
 
 ## Installation
 	npm install smartview
