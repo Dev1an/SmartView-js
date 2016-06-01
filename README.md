@@ -25,7 +25,7 @@ SmartView.getInfo(address, function(error, information) {
 - `callback` 
 
  A callback funciton that will be called with to arguments: `error` and `information`. The `information` argument will be an object like this:
-	​```js
+	```js
 	{
 	    model : "SmartView HD",
 	    hostname : "SmartViewHD-7c2e0d02ae3e",
@@ -50,7 +50,7 @@ SmartView.getInfo(address, function(error, information) {
 	    currentNetmask : "255.255.255.0",
 	    currentGateway : "192.168.0.1"
 	}
-	​```
+	```
 
 ## Change tally border
 ```js
