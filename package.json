@@ -1,6 +1,6 @@
 {
   "name": "smartview",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "BlackMagic SmartView Ethernet Protocol implementation",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Dev1an/SmartView-js",
   "dependencies": {
-    "fibers": "^1.0.4",
+    "fibers": "^4.0.2",
     "mdns": "^2.2.2"
   },
   "devDependencies": {
